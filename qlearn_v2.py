@@ -4,11 +4,12 @@ import time
 import matplotlib.pyplot as plt
 
 # create Maze
-height = 5
-width = 5
-endX = height - 1
+height = 49
+width = 49
+endX = width - 1
 endY = 0
-env = maze(height=height, width=width, endX=endX, endY=endY, startX=0, startY=4)
+env = maze(height=height, width=width, endX=endX, endY=endY, startX=0, startY=4,
+           numberTrap=7)
 
 # create Q-table
 qtable = []
