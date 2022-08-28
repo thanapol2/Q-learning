@@ -4,12 +4,12 @@ import time
 import matplotlib.pyplot as plt
 
 # create Maze
-height = 5
-width = 5
+height = 7
+width = 7
 endX = width - 1
 endY = 0
-env = maze(height=height, width=width, endX=endX, endY=endY, startX=0, startY=4,
-           numberTrap=0)
+env = maze(height=height, width=width, endX=endX, endY=endY, startX=0, startY=6,
+           numberTrap=7)
 
 # create Q-table
 qtable = []
@@ -17,13 +17,13 @@ for i in range(env.stateCount):
     qtable.append([0]*env.actionCount)
 
 # hyperparameters
-epochs = 100
+epochs = 200
 gamma = 0.95
 epsilon = 0.1
 alpha = 0.2
 
 # parameters for output
-epochList = [1,10,50,100]
+epochList = [1,10,50,75,100,150]
 resultSteps = []
 
 def exportQtable(title):
@@ -41,7 +41,7 @@ def exportQtable(title):
     shw = ax.imshow(qtableNP)
     bar = plt.colorbar(shw)
     bar.set_label('ColorBar')
-    plt.show()
+    plt.savefig('epochs {}.png'.format(str(title).zfill(3)))
     plt.clf()
 
 
@@ -99,4 +99,5 @@ if __name__ == '__main__':
     plt.plot(resultSteps)
     plt.ylabel("Number of Steps")
     plt.xlabel("Epoch")
-    plt.show()
+    plt.savefig('step.png')
+    # plt.show()
